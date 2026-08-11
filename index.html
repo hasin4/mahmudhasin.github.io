@@ -339,6 +339,51 @@
   .paper-card h3{ font-size:1.08rem; font-weight:600; line-height:1.4; margin-bottom:8px; }
   .paper-card .meta{ color:var(--muted); font-size:.9rem; }
 
+  .academic-project-grid{ gap:18px; }
+  .academic-card{ padding:24px 26px; }
+  .academic-card .paper-top{ align-items:flex-start; margin-bottom:18px; }
+  .academic-card h3{ font-size:1.06rem; line-height:1.42; }
+  .academic-meta{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:10px;
+    margin:0 0 18px;
+    padding:12px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .academic-meta > div{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .academic-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.66rem;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:var(--muted-2);
+  }
+  .academic-meta > div > span:last-child{
+    color:var(--text);
+    font-size:.82rem;
+    line-height:1.4;
+  }
+  .academic-desc{
+    color:var(--muted);
+    font-size:.91rem;
+    line-height:1.65;
+    margin:0;
+  }
+  .academic-footer{
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:.82rem;
+  }
+
   details.under-review{
     margin-top:28px;
     border:1px dashed var(--line);
@@ -552,6 +597,9 @@
   }
 
   @media (max-width:760px){
+    .academic-meta{ grid-template-columns:1fr; gap:9px; }
+    .academic-meta > div{ flex-direction:row; justify-content:space-between; gap:14px; }
+    .academic-meta > div > span:last-child{ text-align:right; }
     .nav-links{ display:none; }
     .menu-toggle{ display:flex; }
     .hero-grid{ grid-template-columns:1fr; }
@@ -623,7 +671,7 @@
 <div class="hero-grid">
 <div class="hero-copy">
 <div class="eyebrow">Mechanical Engineering Undergrad</div>
-<h1>Mahmud Hasin</h1>
+<h1>Mahmud Hasin</h1>
 <p class="role">Simulating matter at the atomic scale — <em>molecular dynamics</em>, machine learning, and the physics that connects them.</p>
 <div class="hero-actions">
 <a class="btn btn-primary" download="" href="cv.pdf" rel="noopener" target="_blank">Download CV</a>
@@ -647,7 +695,7 @@
 <div class="about-body">
 <div>
 <p>I'm a Mechanical Engineering undergraduate working at the intersection of molecular dynamics, computational modeling, and machine learning. My research explores how atomic-scale simulation and data-driven methods can accelerate materials discovery and thermal-system design — from gold nanowires to HVAC cooling elements.</p>
-<p>I'm a student researcher at the Applied Simulation and Modeling Lab and a member of the Mechanical Society[cite: 1]. Outside the lab, I write about where physics, simulation, and AI meet — and build small tools that make computational research easier to start.</p>
+<p>I'm a student researcher at the Applied Simulation and Modeling Lab and a member of the Mechanical Society. Outside the lab, I write about where physics, simulation, and AI meet — and build small tools that make computational research easier to start.</p>
 </div>
 <div class="stat-list">
 <div class="stat">
@@ -677,7 +725,7 @@
 <span class="date">April 2023 — May 2027 (Expected)</span>
 <h3>B.Sc. in Mechanical Engineering</h3>
 <div class="org">Ahsanullah University of Science and Technology (AUST), Dhaka</div>
-<div class="desc">CGPA: 3.09/4.0 (Current); Projected: ~3.15/4.0 after graduation[cite: 1]. Coursework in Machine Learning, Deep Learning, Computational Mechanics, Numerical Methods, and CAD &amp; Simulation[cite: 1]. Student researcher[cite: 1].</div>
+<div class="desc">CGPA: 3.09/4.0 (Current); Projected: ~3.15/4.0 after graduation. Coursework in Machine Learning, Deep Learning, Computational Mechanics, Numerical Methods, and CAD &amp; Simulation. Student researcher.</div>
 </div>
 <div class="t-item">
 <span class="date">2020 — 2022</span>
@@ -754,14 +802,14 @@
 <h3 style="margin-bottom:0;flex:1;">A Solar-Powered Perpetual Mars Exploration Unmanned Aerial Vehicle: A Review of Sky-Sailor</h3>
 <span class="tag accepted">Accepted</span>
 </div>
-<div class="meta">Symposium on Photonics, Emerging Computational Technologies, Research &amp; AI-Data Science (SPECTRA 2026) — Open Category[cite: 1]</div>
+<div class="meta">Symposium on Photonics, Emerging Computational Technologies, Research &amp; AI-Data Science (SPECTRA 2026) — Open Category</div>
 </div>
 <div class="paper-card">
 <div class="paper-top">
 <h3 style="margin-bottom:0;flex:1;">A Study on Molecular Dynamics for the Deep Generative Inverse Design of Gold Nanowires</h3>
 <span class="tag accepted">Accepted · Oral</span>
 </div>
-<div class="meta">8th International Conference on Chemical Engineering (ICChE 2026) — Paper ID 171[cite: 1]</div>
+<div class="meta">8th International Conference on Chemical Engineering (ICChE 2026) — Paper ID 171</div>
 </div>
 </div>
 <details class="under-review">
@@ -769,19 +817,19 @@
 <div class="ur-list">
 <div class="ur-item">
 <b>Coarse-Grained Boltzmann Generators for Data-Efficient Molecular Sampling Using Energy-Based Training</b><br/>
-          ICMIME 2026 <span class="status">· in preparation[cite: 1]</span>
+          ICMIME 2026 <span class="status">· in preparation</span>
 </div>
 <div class="ur-item">
 <b>Machine Learning Integrated with Molecular Dynamics for Predicting Interfacial Interaction Energies of Ciprofloxacin–Carbon Nanotube Systems</b><br/>
-          Material Science Track, Submission 223 <span class="status">· awaiting decision[cite: 1]</span>
+          Material Science Track, Submission 223 <span class="status">· awaiting decision</span>
 </div>
 <div class="ur-item">
 <b>Machine Learning Integrated Molecular Dynamics for Predicting Orientation-Dependent Deformation Behavior of Single-Crystalline Gold Nanowires</b><br/>
-          Material Science Track, Submission 239 <span class="status">· awaiting decision[cite: 1]</span>
+          Material Science Track, Submission 239 <span class="status">· awaiting decision</span>
 </div>
 <div class="ur-item">
 <b>Orientation-Dependent Tensile Properties and Atomic-Scale Deformation Mechanisms of Single-Crystal Fe, Ni, and Fe–Ni Alloys: A Molecular Dynamics Study</b><br/>
-          Material Science Track, Submission 248 <span class="status">· awaiting decision[cite: 1]</span>
+          Material Science Track, Submission 248 <span class="status">· awaiting decision</span>
 </div>
 </div>
 </details>
@@ -793,33 +841,53 @@
 <h2>Academic Projects</h2>
 <span class="section-num mono">05 / Practical Works</span>
 </div>
-<div class="card-grid">
-<div class="paper-card">
+<div class="card-grid academic-project-grid">
+
+<div class="paper-card academic-card">
 <div class="paper-top">
 <h3 style="margin-bottom:0;flex:1;">Communication Seminar Technical Report</h3>
-<span class="tag">Group Project (Group B)</span>
+<span class="tag">Group Project</span>
 </div>
-<div class="meta" style="margin-bottom:12px;">Submission Date: March 12, 2025</div>
-<p style="color:var(--muted); font-size:.92rem; margin:0 0 12px;">Group Project for Communication Seminar incorporating NPT 2 (SDG 1): Reduce the proportion of the population living below the national poverty line to below 10 percent.</p>
-<div style="font-size:0.85rem; color:var(--muted);"><b>Group Members:</b> 1. Mahmud Hasin (20220208003)</div>
+<div class="academic-meta">
+<div><span class="academic-label">Course</span><span>Communication Seminar</span></div>
+<div><span class="academic-label">Time</span><span>March 2025</span></div>
+<div><span class="academic-label">Group</span><span>Group B</span></div>
 </div>
-<div class="paper-card">
+<p class="academic-desc">Technical report developed for Communication Seminar, incorporating NPT 2 (SDG 1): reducing the proportion of the population living below the national poverty line to below 10 percent.</p>
+<div class="academic-footer"><span>Project member: Mahmud Hasin</span></div>
+</div>
+
+<div class="paper-card academic-card">
 <div class="paper-top">
 <h3 style="margin-bottom:0;flex:1;">Designing the Landing Mechanism of a Solar Powered UAV</h3>
-<span class="tag">ME 3202 Design Project</span>
+<span class="tag">Design Project</span>
 </div>
-<div class="meta" style="margin-bottom:12px;">Advisor: Md. Samiul Haider Chowdhury | Group Number: A1 | Submission Date: April 19, 2026</div>
-<p style="color:var(--muted); font-size:.92rem; margin:0 0 12px;">Technical Report / Group Project for Communication Seminar incorporating NPT 2 (SDG 1): Reduce the proportion of the population living below the national poverty line to below 10 percent. Focused on structural design and fatigue analysis for a 2.5 kg UAV landing mechanism.</p>
+<div class="academic-meta">
+<div><span class="academic-label">Course</span><span>ME 3202 Design Project</span></div>
+<div><span class="academic-label">Time</span><span>April 2026</span></div>
+<div><span class="academic-label">Group</span><span>A1</span></div>
 </div>
-<div class="paper-card">
+<p class="academic-desc">Design project focused on the structural design and fatigue analysis of a 2.5 kg UAV landing mechanism.</p>
+<div class="academic-footer"><span>Advisor: Md. Samiul Haider Chowdhury</span></div>
+</div>
+
+<div class="paper-card academic-card">
 <div class="paper-top">
 <h3 style="margin-bottom:0;flex:1;">Voice Control Wheel Chair</h3>
 <span class="tag">Research Project</span>
 </div>
-<div class="meta" style="margin-bottom:12px;">Date: September 24, 2025</div>
-<p style="color:var(--muted); font-size:.92rem; margin:0 0 12px;">Developed an assistive mobility solution leveraging speech recognition and microcontroller systems to enable voice-controlled navigation for individuals with restricted physical mobility.</p>
-<a class="btn" href="https://www.researchgate.net/profile/Mahmud-Azwad?ev=hdr_xprf" rel="noopener" style="font-size:.74rem; padding:6px 12px;" target="_blank">View ResearchGate Profile ↗</a>
+<div class="academic-meta">
+<div><span class="academic-label">Course</span><span>ME 3110 — Measurement and Instrumentation Sessional</span></div>
+<div><span class="academic-label">Time</span><span>September 2025</span></div>
+<div><span class="academic-label">Project Type</span><span>Research Project</span></div>
 </div>
+<div class="academic-meta">
+<div><span class="academic-label">Course</span><span>ME 3202 — Mechanical Design Sessional</span></div>
+<div><span class="academic-label">Time</span><span>April 2026</span></div>
+</div>
+<p class="academic-desc">Assistive mobility project leveraging speech recognition and microcontroller systems to enable voice-controlled navigation for individuals with restricted physical mobility.</p>
+</div>
+
 </div>
 </div>
 </section>
@@ -967,7 +1035,7 @@
 <h2>Let's talk research, collaboration, or the next simulation.</h2>
 <p>Open to research collaborations, internships, and conversations about molecular dynamics, machine learning, and computational modeling.</p>
 <div class="contact-actions">
-<a class="btn btn-primary" href="mailto:mahmudhasin708@gmail.com">mahmudhasin708@gmail.com</a>
+<a class="btn btn-primary" href="mailto:mahmudhasin4@gmail.com">mahmudhasin4@gmail.com</a>
 <a class="btn" href="https://www.linkedin.com/in/mahmud-hasin-07a559375" rel="noopener" target="_blank">LinkedIn ↗</a>
 <a class="btn" href="https://www.researchgate.net/profile/Mahmud-Azwad?ev=hdr_xprf" rel="noopener" target="_blank">ResearchGate ↗</a>
 </div>
