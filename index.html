@@ -111,6 +111,20 @@
       --radius: 6px;
     }
 
+    [data-theme="dark"] {
+      --void: #0B0F19;
+      --panel: #111827;
+      --panel-2: #1F2937;
+      --line: #374151;
+      --ion: #14B8A6;
+      --ion-soft: rgba(20, 184, 166, 0.12);
+      --photon: #F59E0B;
+      --photon-soft: rgba(245, 158, 11, 0.12);
+      --text: #F9FAFB;
+      --muted: #9CA3AF;
+      --muted-2: #6B7280;
+    }
+
     *,
     *::before,
     *::after {
@@ -142,6 +156,7 @@
       font-family: "Inter", system-ui, sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     body::before {
@@ -220,10 +235,11 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--panel);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     nav.wrap {
@@ -253,7 +269,44 @@
     .nav-cta {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
+    }
+
+    .theme-toggle {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      width: 38px;
+      height: 38px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.15s, background 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--ion);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    [data-theme="dark"] .sun-icon {
+      display: block;
+    }
+    [data-theme="dark"] .moon-icon {
+      display: none;
+    }
+    :not([data-theme="dark"]) .sun-icon {
+      display: none;
+    }
+    :not([data-theme="dark"]) .moon-icon {
+      display: block;
     }
 
     .btn {
@@ -327,7 +380,7 @@
       background:
         linear-gradient(
           180deg,
-          rgba(13, 148, 136, 0.03) 0%,
+          var(--ion-soft) 0%,
           transparent 100%
         );
     }
@@ -971,7 +1024,7 @@
         linear-gradient(
           180deg,
           transparent 0%,
-          rgba(13, 148, 136, 0.02) 100%
+          var(--ion-soft) 100%
         );
     }
 
@@ -1158,6 +1211,30 @@
       </div>
 
       <div class="nav-cta">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark/light mode"
+          type="button"
+        >
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
         <button
           class="menu-toggle"
           id="menuToggle"
@@ -2329,6 +2406,34 @@
   </footer>
 
   <script>
+    /* Dark mode toggle */
+    const themeToggle = document.getElementById("themeToggle");
+    const userPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function setTheme(isDark) {
+      if (isDark) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+      }
+    }
+
+    // Initialize theme based on local storage or system preference
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark" || (!savedTheme && userPrefersDark.matches)) {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const isDark = !document.documentElement.hasAttribute("data-theme");
+      setTheme(isDark);
+    });
+
+
     /* Mobile menu */
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -2532,7 +2637,7 @@
                 (1 - distance / LINK_DISTANCE) * 0.4;
 
               ctx.strokeStyle =
-                "#0D9488";
+                document.documentElement.hasAttribute("data-theme") ? "#14B8A6" : "#0D9488";
 
               ctx.lineWidth = 1;
 
@@ -2565,8 +2670,8 @@
 
           ctx.fillStyle =
             node.amber
-              ? "#D97706"
-              : "#0D9488";
+              ? (document.documentElement.hasAttribute("data-theme") ? "#F59E0B" : "#D97706")
+              : (document.documentElement.hasAttribute("data-theme") ? "#14B8A6" : "#0D9488");
 
           ctx.arc(
             node.x,
